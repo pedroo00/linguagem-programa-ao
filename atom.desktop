@@ -1,0 +1,20 @@
+import PySimpleGUI as sg
+
+layout = [ 
+    [sg.Text('IMC')],
+    [sg.Text('Massa: '), sg.Input(key='-MASS-', size=(5, 1))],
+    [sg.Text('Altura: '), sg.Input(key='-HEIGHT-', size=(5, 1))],
+    [sg.Push(), sg.Button('Calcular'), sg.Push()] 
+]
+
+window = sg.Window('IMC', layout, font='Monaco 20') 
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == 'Exit':
+        break
+    Massa = float(values['-MASS-'])
+    Altura = float(values['-HEIGHT-'])
+    imc = Massa / (Altura**2) 
+    sg.Popup(f'Seu IMC é: {imc:.2f}')
+
+window.close()
